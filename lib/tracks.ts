@@ -91,6 +91,46 @@ export const TRACKS: Track[] = [
     icon: "Boxes",
     gradient: "from-indigo-500 to-violet-600",
   },
+  {
+    id: "data",
+    name: "Data Management",
+    short: "Data",
+    blurb:
+      "Deduplication, quality filtering, data mixtures and versioning — the curation work that decides what a model can learn.",
+    domain: "mle",
+    icon: "Database",
+    gradient: "from-amber-500 to-orange-600",
+  },
+  {
+    id: "training",
+    name: "Model Training",
+    short: "Train",
+    blurb:
+      "Mixed precision, ZeRO/FSDP, scaling laws, LoRA and RLHF — how large models are actually trained on real hardware.",
+    domain: "mle",
+    icon: "Cpu",
+    gradient: "from-rose-500 to-red-600",
+  },
+  {
+    id: "autoresearch",
+    name: "Auto Research",
+    short: "Research",
+    blurb:
+      "Hyperparameter search, Hyperband, ablations and agentic research loops — running experiments with rigor and at scale.",
+    domain: "mle",
+    icon: "FlaskConical",
+    gradient: "from-orange-500 to-amber-600",
+  },
+  {
+    id: "evaluation",
+    name: "Evaluation",
+    short: "Eval",
+    blurb:
+      "Eval harnesses, high-throughput batch evaluation, LLM-as-judge and contamination — measuring models honestly and fast.",
+    domain: "mle",
+    icon: "Gauge",
+    gradient: "from-yellow-500 to-orange-600",
+  },
 ];
 
 export const TRACK_MAP: Record<string, Track> = Object.fromEntries(

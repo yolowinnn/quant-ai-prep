@@ -9,7 +9,7 @@ import type { Domain } from "@/lib/types";
 export const metadata: Metadata = {
   title: "Tracks",
   description:
-    "Nine curated tracks spanning quantitative finance and AI/ML interview preparation.",
+    "Curated tracks spanning quantitative finance, AI/ML, and large-model training, data and evaluation interview preparation.",
 };
 
 const GROUPS: { domain: Domain; label: string; sub: string }[] = [
@@ -23,6 +23,11 @@ const GROUPS: { domain: Domain; label: string; sub: string }[] = [
     label: "AI / Machine Learning",
     sub: "From the fundamentals of statistical learning to the modern deep-learning stack.",
   },
+  {
+    domain: "mle",
+    label: "Training & Research Infrastructure",
+    sub: "How large models are actually built — data curation, distributed training, automated experimentation, and evaluation at scale.",
+  },
 ];
 
 export default function TracksPage() {
@@ -32,7 +37,7 @@ export default function TracksPage() {
     <div className="mx-auto max-w-6xl px-5 py-12">
       <header className="mb-10 max-w-2xl">
         <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
-          Nine tracks
+          {TRACKS.length} tracks
         </div>
         <h1
           className="text-3xl font-semibold tracking-tight sm:text-4xl"

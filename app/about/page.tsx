@@ -48,7 +48,7 @@ export default function AboutPage() {
         <InfoCard
           icon={BookMarked}
           title={`${ALL_PROBLEMS.length} problems`}
-          body="Across nine tracks, from warm-up teasers to elite martingale arguments."
+          body={`Across ${TRACKS.length} tracks, from warm-up teasers to elite martingale arguments and large-scale training systems.`}
         />
         <InfoCard
           icon={ShieldCheck}

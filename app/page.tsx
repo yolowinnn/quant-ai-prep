@@ -23,11 +23,14 @@ const FEATURED_IDS = [
 export default function Home() {
   const counts = trackCounts();
   const total = ALL_PROBLEMS.length;
-  const quantCount = TRACKS.filter((t) => t.domain === "quant").reduce(
-    (s, t) => s + (counts[t.id] ?? 0),
-    0
-  );
-  const aiCount = total - quantCount;
+  const sumDomain = (d: string) =>
+    TRACKS.filter((t) => t.domain === d).reduce(
+      (s, t) => s + (counts[t.id] ?? 0),
+      0
+    );
+  const quantCount = sumDomain("quant");
+  const aiCount = sumDomain("ai");
+  const mleCount = sumDomain("mle");
   const featured = FEATURED_IDS.map((id) => getProblem(id)).filter(
     (p): p is NonNullable<typeof p> => Boolean(p)
   );
@@ -70,9 +73,13 @@ export default function Home() {
               </strong>{" "}
               — from the legendary brainteasers of{" "}
               <em>A Practical Guide to Quantitative Finance Interviews</em> to
-              stochastic calculus, derivatives pricing, and the modern
-              deep-learning stack. Every problem comes with a full,
-              first-principles solution.
+              stochastic calculus, derivatives pricing, the modern
+              deep-learning stack, and the infrastructure behind{" "}
+              <strong className="font-semibold text-[var(--text)]">
+                training, data curation and evaluating
+              </strong>{" "}
+              large models. Every problem comes with a full, first-principles
+              solution.
             </p>
 
             <div className="animate-fade-up mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -95,7 +102,10 @@ export default function Home() {
             <div className="animate-fade-up mx-auto mt-14 grid max-w-lg grid-cols-3 gap-4">
               <Stat value={total} label="Problems" />
               <Stat value={TRACKS.length} label="Tracks" />
-              <Stat value={`${quantCount}·${aiCount}`} label="Quant · AI" />
+              <Stat
+                value={`${quantCount}·${aiCount}·${mleCount}`}
+                label="Quant · AI · MLE"
+              />
             </div>
           </div>
         </div>
@@ -104,9 +114,9 @@ export default function Home() {
       {/* ---------- Tracks ---------- */}
       <section className="mx-auto max-w-6xl px-5 py-16">
         <SectionHeading
-          eyebrow="Nine tracks"
+          eyebrow={`${TRACKS.length} tracks`}
           title="Everything the desks ask about"
-          sub="Structured the way real interviews are — the quant canon on one side, the AI/ML canon on the other."
+          sub="Structured the way real interviews are — the quant canon, the AI/ML canon, and the training, data and evaluation stack behind large models."
         />
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

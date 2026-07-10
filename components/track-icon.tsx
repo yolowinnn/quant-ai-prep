@@ -8,6 +8,10 @@ import {
   Brain,
   Network,
   Boxes,
+  Database,
+  Cpu,
+  FlaskConical,
+  Gauge,
   type LucideIcon,
 } from "lucide-react";
 
@@ -21,6 +25,10 @@ const ICONS: Record<string, LucideIcon> = {
   Brain,
   Network,
   Boxes,
+  Database,
+  Cpu,
+  FlaskConical,
+  Gauge,
 };
 
 export function TrackIcon({

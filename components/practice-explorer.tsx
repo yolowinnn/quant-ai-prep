@@ -10,6 +10,13 @@ import { useProgress } from "./progress-provider";
 
 const DIFFICULTIES: Difficulty[] = ["warmup", "core", "hard", "elite"];
 
+const DOMAIN_LABELS: Record<Domain | "all", string> = {
+  all: "All domains",
+  quant: "Quant",
+  ai: "AI / ML",
+  mle: "Training & Eval",
+};
+
 export function PracticeExplorer({
   problems,
   initialTrack = "all",
@@ -104,7 +111,7 @@ export function PracticeExplorer({
       {/* Domain + difficulty + toggles */}
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <FilterGroup>
-          {(["all", "quant", "ai"] as const).map((d) => (
+          {(["all", "quant", "ai", "mle"] as const).map((d) => (
             <Chip
               key={d}
               active={domain === d}
@@ -113,7 +120,7 @@ export function PracticeExplorer({
                 if (d !== "all" && !lockTrack) setTrack("all");
               }}
             >
-              {d === "all" ? "All domains" : d === "quant" ? "Quant" : "AI / ML"}
+              {DOMAIN_LABELS[d]}
             </Chip>
           ))}
         </FilterGroup>

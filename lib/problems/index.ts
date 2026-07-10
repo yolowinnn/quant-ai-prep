@@ -8,6 +8,10 @@ import { programming } from "./programming";
 import { mlClassic } from "./ml-classic";
 import { mlDeep } from "./ml-deep";
 import { mlSystem } from "./ml-system";
+import { dataManagement } from "./data-management";
+import { training } from "./training";
+import { autoResearch } from "./auto-research";
+import { evaluation } from "./evaluation";
 
 export const ALL_PROBLEMS: Problem[] = [
   ...brainteasers,
@@ -19,6 +23,10 @@ export const ALL_PROBLEMS: Problem[] = [
   ...mlClassic,
   ...mlDeep,
   ...mlSystem,
+  ...dataManagement,
+  ...training,
+  ...autoResearch,
+  ...evaluation,
 ];
 
 export const PROBLEMS_BY_ID: Record<string, Problem> = Object.fromEntries(

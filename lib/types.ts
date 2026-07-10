@@ -1,6 +1,6 @@
 export type Difficulty = "warmup" | "core" | "hard" | "elite";
 
-export type Domain = "quant" | "ai";
+export type Domain = "quant" | "ai" | "mle";
 
 export type TrackId =
   | "brainteasers"
@@ -11,7 +11,11 @@ export type TrackId =
   | "programming"
   | "ml-classic"
   | "ml-deep"
-  | "ml-system";
+  | "ml-system"
+  | "data"
+  | "training"
+  | "autoresearch"
+  | "evaluation";
 
 export interface Problem {
   /** Globally unique, URL-safe slug. */
