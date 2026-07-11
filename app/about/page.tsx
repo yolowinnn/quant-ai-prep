@@ -94,7 +94,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/problems"
-          className="mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
+          className="mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--accent-strong)] px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
         >
           Start practicing <ArrowRight className="h-4 w-4" />
         </Link>

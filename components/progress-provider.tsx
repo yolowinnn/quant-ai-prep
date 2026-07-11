@@ -43,46 +43,42 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     setReady(true);
   }, []);
 
-  const persist = useCallback((s: Set<string>, st: Set<string>) => {
+  // Persist whenever either set changes — but only after the initial load has
+  // run, so the empty initial state can never clobber previously stored data.
+  useEffect(() => {
+    if (!ready) return;
     try {
       localStorage.setItem(
         KEY,
-        JSON.stringify({ solved: [...s], starred: [...st] })
+        JSON.stringify({ solved: [...solved], starred: [...starred] })
       );
     } catch {
       /* storage may be unavailable */
     }
+  }, [solved, starred, ready]);
+
+  const toggleSolved = useCallback((id: string) => {
+    setSolved((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
   }, []);
 
-  const toggleSolved = useCallback(
-    (id: string) => {
-      setSolved((prev) => {
-        const next = new Set(prev);
-        next.has(id) ? next.delete(id) : next.add(id);
-        persist(next, starred);
-        return next;
-      });
-    },
-    [persist, starred]
-  );
-
-  const toggleStarred = useCallback(
-    (id: string) => {
-      setStarred((prev) => {
-        const next = new Set(prev);
-        next.has(id) ? next.delete(id) : next.add(id);
-        persist(solved, next);
-        return next;
-      });
-    },
-    [persist, solved]
-  );
+  const toggleStarred = useCallback((id: string) => {
+    setStarred((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }, []);
 
   const reset = useCallback(() => {
     setSolved(new Set());
     setStarred(new Set());
-    persist(new Set(), new Set());
-  }, [persist]);
+  }, []);
 
   const value = useMemo<ProgressState>(
     () => ({

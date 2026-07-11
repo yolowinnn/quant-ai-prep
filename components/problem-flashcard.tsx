@@ -20,6 +20,8 @@ export function ProblemFlashcard({
   const { isSolved, isStarred, toggleSolved, toggleStarred, ready } =
     useProgress();
   const track = TRACK_MAP[problem.track];
+  const gradient = track?.gradient ?? "from-emerald-500 to-teal-600";
+  const trackName = track?.name ?? problem.track;
 
   const solved = ready && isSolved(problem.id);
   const starred = ready && isStarred(problem.id);
@@ -34,7 +36,7 @@ export function ProblemFlashcard({
     >
       {/* accent rail */}
       <span
-        className={`absolute inset-y-0 left-0 w-1 bg-gradient-to-b ${track.gradient} ${
+        className={`absolute inset-y-0 left-0 w-1 bg-gradient-to-b ${gradient} ${
           solved ? "opacity-100" : "opacity-60"
         }`}
       />
@@ -42,9 +44,9 @@ export function ProblemFlashcard({
       <div className="p-5 pl-6 sm:p-6 sm:pl-7">
         <div className="mb-3 flex flex-wrap items-center gap-2">
           <span
-            className={`inline-flex items-center rounded-full bg-gradient-to-r ${track.gradient} px-2.5 py-0.5 text-xs font-medium text-white`}
+            className={`inline-flex items-center rounded-full bg-gradient-to-r ${gradient} px-2.5 py-0.5 text-xs font-medium text-white`}
           >
-            {track.name}
+            {trackName}
           </span>
           <DifficultyBadge difficulty={problem.difficulty} />
           {problem.source && (
@@ -55,9 +57,11 @@ export function ProblemFlashcard({
 
           <div className="ml-auto flex items-center gap-1.5">
             <button
-              aria-label={starred ? "Unstar" : "Star"}
+              type="button"
+              aria-label={starred ? "Remove star" : "Star this problem"}
+              aria-pressed={starred}
               onClick={() => toggleStarred(problem.id)}
-              className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
+              className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] ${
                 starred
                   ? "text-amber-500"
                   : "text-[var(--text-muted)] hover:text-amber-500"
@@ -69,11 +73,13 @@ export function ProblemFlashcard({
               />
             </button>
             <button
+              type="button"
               aria-label={solved ? "Mark unsolved" : "Mark solved"}
+              aria-pressed={solved}
               onClick={() => toggleSolved(problem.id)}
-              className={`inline-flex h-8 items-center gap-1 rounded-full px-2.5 text-xs font-medium transition-colors ${
+              className={`inline-flex h-8 items-center gap-1 rounded-full px-2.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] ${
                 solved
-                  ? "bg-emerald-500 text-white"
+                  ? "bg-[var(--accent-strong)] text-white"
                   : "bg-[var(--accent-soft)] text-[var(--text-muted)] hover:text-[var(--accent)]"
               }`}
             >
@@ -97,8 +103,10 @@ export function ProblemFlashcard({
 
         <div className="mt-4">
           <button
+            type="button"
+            aria-expanded={revealed}
             onClick={() => setRevealed((r) => !r)}
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg)] px-3.5 py-1.5 text-sm font-medium text-[var(--text-muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg)] px-3.5 py-1.5 text-sm font-medium text-[var(--text-muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
           >
             {revealed ? (
               <>

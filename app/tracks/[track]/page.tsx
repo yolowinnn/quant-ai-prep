@@ -52,7 +52,11 @@ export default async function TrackPage({
         <div>
           <div className="mb-1 flex items-center gap-2">
             <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
-              {t.domain === "quant" ? "Quant" : "AI / ML"}
+              {t.domain === "quant"
+                ? "Quant"
+                : t.domain === "ai"
+                  ? "AI / ML"
+                  : "Training & Research"}
             </span>
             <span className="text-xs text-[var(--text-muted)]">
               · {problems.length} problems

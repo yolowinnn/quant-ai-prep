@@ -101,31 +101,37 @@ export function PracticeExplorer({
       <div className="relative mb-5">
         <Search className="pointer-events-none absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-[var(--text-muted)]" />
         <input
+          type="search"
+          aria-label="Search problems"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search problems, tags, sources…"
-          className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-elev)] py-3 pl-11 pr-4 text-sm outline-none transition-colors placeholder:text-[var(--text-muted)] focus:border-[var(--accent)]"
+          className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-elev)] py-3 pl-11 pr-4 text-sm transition-colors placeholder:text-[var(--text-muted)] focus:border-[var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
         />
       </div>
 
       {/* Domain + difficulty + toggles */}
       <div className="mb-3 flex flex-wrap items-center gap-2">
-        <FilterGroup>
-          {(["all", "quant", "ai", "mle"] as const).map((d) => (
-            <Chip
-              key={d}
-              active={domain === d}
-              onClick={() => {
-                setDomain(d);
-                if (d !== "all" && !lockTrack) setTrack("all");
-              }}
-            >
-              {DOMAIN_LABELS[d]}
-            </Chip>
-          ))}
-        </FilterGroup>
+        {!lockTrack && (
+          <>
+            <FilterGroup>
+              {(["all", "quant", "ai", "mle"] as const).map((d) => (
+                <Chip
+                  key={d}
+                  active={domain === d}
+                  onClick={() => {
+                    setDomain(d);
+                    if (d !== "all") setTrack("all");
+                  }}
+                >
+                  {DOMAIN_LABELS[d]}
+                </Chip>
+              ))}
+            </FilterGroup>
 
-        <span className="hidden h-5 w-px bg-[var(--border)] sm:block" />
+            <span className="hidden h-5 w-px bg-[var(--border)] sm:block" />
+          </>
+        )}
 
         <FilterGroup>
           <Chip active={difficulty === "all"} onClick={() => setDifficulty("all")}>
@@ -157,6 +163,7 @@ export function PracticeExplorer({
 
         {anyFilter && (
           <button
+            type="button"
             onClick={clearAll}
             className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium text-[var(--text-muted)] hover:text-[var(--accent)]"
           >
@@ -235,10 +242,11 @@ function Chip({
 }) {
   return (
     <button
+      type="button"
       onClick={onClick}
-      className={`inline-flex items-center rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+      className={`inline-flex items-center rounded-full px-3 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] ${
         active
-          ? "bg-[var(--accent)] text-white"
+          ? "bg-[var(--accent-strong)] text-white"
           : "border border-[var(--border)] bg-[var(--bg-elev)] text-[var(--text-muted)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
       }`}
     >
