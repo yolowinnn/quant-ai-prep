@@ -62,6 +62,14 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${fraunces.variable} ${mono.variable}`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(/[?&]embed/.test(location.search)){document.documentElement.classList.add('embed')}}catch(e){}",
+          }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <ProgressProvider>

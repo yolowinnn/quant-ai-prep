@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Embedded inside 润 Hub (?embed=1): hide own nav/footer so the Hub shell is the only chrome. */
+html.embed [data-chrome] { display: none !important; }
+
 :root {
   --bg: #f7faf6;
   --bg-elev: #ffffff;

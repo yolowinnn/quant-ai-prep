@@ -3,7 +3,7 @@ import { TrendingUp, Github } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--bg-elev)]">
+    <footer data-chrome className="border-t border-[var(--border)] bg-[var(--bg-elev)]">
       <div className="mx-auto max-w-6xl px-5 py-10">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div className="flex items-center gap-2.5">
