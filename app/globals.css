@@ -160,6 +160,14 @@ body {
   color: var(--text);
 }
 
+/* Hero backdrop illustration (GPT-generated) — faint texture in light, richer in dark */
+.hero-art {
+  opacity: 0.08;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 42%, transparent 90%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 42%, transparent 90%);
+}
+.dark .hero-art { opacity: 0.5; }
+
 .animate-fade-up { animation: fade-up 0.55s cubic-bezier(0.22,1,0.36,1) both; }
 @keyframes fade-up {
   0% { opacity: 0; transform: translateY(14px); }

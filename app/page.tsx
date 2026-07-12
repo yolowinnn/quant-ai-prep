@@ -48,6 +48,11 @@ export default function Home() {
           }}
           aria-hidden
         />
+        <div
+          className="hero-art absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url(/quant-hero.jpg)" }}
+          aria-hidden
+        />
         <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-20 sm:pt-28">
           <div className="mx-auto max-w-3xl text-center">
             <div className="animate-fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-elev)] px-4 py-1.5 text-xs font-medium text-[var(--text-muted)]">
