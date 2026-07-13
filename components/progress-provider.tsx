@@ -61,7 +61,10 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     setSolved((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
-      else next.add(id);
+      else {
+        next.add(id);
+        try { if (window.parent && window.parent !== window) window.parent.postMessage({ type: "run-points", points: 3, source: "quant" }, "*"); } catch (e) {}
+      }
       return next;
     });
   }, []);
